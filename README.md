@@ -40,8 +40,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - Update the readme by putting a check mark against the tasks you have completed. If you have not completed all the tasks, make sure to tick all the relevant ones. 
 
-- Open a pull request from "your_name_vidyalai" to "master"
-Fill [this form](https://docs.google.com/forms/d/e/1FAIpQLSeACdInJitqQ8hncrJdsTYEXVuts0Rb_WlMhLihXz06MTFmwA/viewform) with a link to the pull request 
+- Open a pull request from "your_name_vidyalai" to "master" in your repo and  
+Fill [this form](https://docs.google.com/forms/d/e/1FAIpQLSeACdInJitqQ8hncrJdsTYEXVuts0Rb_WlMhLihXz06MTFmwA/viewform) with a link to the pull request. 
 
 
 ## Evaluation Criteria
