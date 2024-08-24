@@ -14,7 +14,7 @@ class MyDocument extends Document {
             html {
               font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
             }
-          
+
             body {
               font-family: 'Arial', sans-serif;
               margin: 0;

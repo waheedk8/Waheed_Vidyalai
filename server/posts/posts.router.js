@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
 
   const postsWithImages = posts.reduce((acc, post) => {
     // TODO use this route to fetch photos for each post
-    // axios.get(`https://jsonplaceholder.typicode.com/albums/${post.id}/photos`);
+    // axios.get(`https://jsonplaceholder.typicode.com/albums/1/photos`);
     return [
       ...acc,
       {

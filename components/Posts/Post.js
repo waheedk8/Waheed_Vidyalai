@@ -22,7 +22,7 @@ const Carousel = styled.div(() => ({
   '&::-webkit-scrollbar': {
     display: 'none',
   },
-  position: 'relative',
+  scrollSnapType: 'x mandatory', // Ensure items snap into place
 }));
 
 const CarouselItem = styled.div(() => ({
@@ -42,17 +42,41 @@ const Content = styled.div(() => ({
   '& > h2': {
     marginBottom: '16px',
   },
+  '& > p': {
+    marginBottom: '8px',
+  },
+  '& > h3': {
+    marginTop: '0',
+    fontSize: '16px',
+    color: '#555',
+  },
+  '& > h4': {
+    marginTop: '0',
+    fontSize: '14px',
+    color: '#777',
+  },
+}));
+
+const CenteredInfo = styled.div(() => ({
+ // Center text horizontally
+  padding: '10px', // Optional: add padding
+  width: '100%', // Ensure full width for centering
 }));
 
 const Button = styled.button(() => ({
   position: 'absolute',
-  bottom: 0,
+  top: '50%',
+  transform: 'translateY(-50%)',
   backgroundColor: 'rgba(255, 255, 255, 0.5)',
   border: 'none',
   color: '#000',
   fontSize: '20px',
   cursor: 'pointer',
   height: '50px',
+  width: '50px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 }));
 
 const PrevButton = styled(Button)`
@@ -69,7 +93,7 @@ const Post = ({ post }) => {
   const handleNextClick = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({
-        left: 50,
+        left: carouselRef.current.clientWidth, // Scroll by container width
         behavior: 'smooth',
       });
     }
@@ -78,7 +102,7 @@ const Post = ({ post }) => {
   const handlePrevClick = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({
-        left: -70,
+        left: -carouselRef.current.clientWidth, // Scroll by container width
         behavior: 'smooth',
       });
     }
@@ -86,6 +110,10 @@ const Post = ({ post }) => {
 
   return (
     <PostContainer>
+      <CenteredInfo>
+        <h3>Leanne Graham{post.name}</h3>
+        <h4>Sincere@april.biz{post.email}</h4>
+      </CenteredInfo>
       <CarouselContainer>
         <Carousel ref={carouselRef}>
           {post.images.map((image, index) => (
@@ -94,8 +122,12 @@ const Post = ({ post }) => {
             </CarouselItem>
           ))}
         </Carousel>
-        <PrevButton onClick={handlePrevClick}>&#10094;</PrevButton>
-        <NextButton onClick={handleNextClick}>&#10095;</NextButton>
+        <PrevButton onClick={handlePrevClick} aria-label={"Previous image"}>
+          &#10094;
+        </PrevButton>
+        <NextButton onClick={handleNextClick} aria-label={"Next image"}>
+          &#10095;
+        </NextButton>
       </CarouselContainer>
       <Content>
         <h2>{post.title}</h2>
@@ -107,12 +139,16 @@ const Post = ({ post }) => {
 
 Post.propTypes = {
   post: PropTypes.shape({
-    content: PropTypes.any,
-    images: PropTypes.shape({
-      map: PropTypes.func,
-    }),
-    title: PropTypes.any,
-  }),
+    images: PropTypes.arrayOf(
+      PropTypes.shape({
+        url: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired, // Added name to propTypes
+    email: PropTypes.string.isRequired, // Added email to propTypes
+  }).isRequired,
 };
 
 export default Post;

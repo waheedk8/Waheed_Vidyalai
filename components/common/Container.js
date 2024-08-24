@@ -1,6 +1,7 @@
 import React from 'react';
 import useWindowWidth from '../hooks/useWindowWidth';
 
+// eslint-disable-next-line react/prop-types
 export default function Container({ children }) {
   const { isSmallerDevice } = useWindowWidth();
   return (
